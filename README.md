@@ -1,43 +1,50 @@
-# Mintlify Starter Kit
+# Coplay Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+This repository contains the official documentation for Coplay, an AI assistant specifically designed for Unity game developers. The documentation is built using [Mintlify](https://mintlify.com/), a modern documentation platform.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## Documentation Structure
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+The documentation is organized into the following main sections:
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+- **Getting Started**: Welcome information, installation guide, and basic usage instructions
+- **Essentials**: Configuration options, settings, and best practices
+- **Release Notes**: Updates and new features
 
-## Development
+## Configuration (docs.json)
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+The `docs.json` file is the main configuration file for the documentation. It defines:
 
+- **Theme & Branding**: Sets "mint" theme, documentation name, colors (primary: #442172, light: #B48AEB, dark: #442172), and favicon
+- **Navigation Structure**:
+  - Tabs: "Guides" and "Release Notes"
+  - Groups: "Get Started", "Using Coplay", and "Overview"
+  - Pages: Mapped to .mdx files in the repository
+- **Global Navigation**: Anchors for "Community" (Discord) and "Blog" links
+- **Logo**: Path to SVG file used for both light and dark themes
+- **Navbar**: Contains support email link and a primary "Get Started" button
+- **Footer**: Social media links for Twitter/X, GitHub, LinkedIn, and Discord
+
+This configuration controls the entire structure, appearance, and navigation of the documentation site.
+
+## Local Development
+
+To preview the documentation changes locally, install the [Mintlify CLI](https://www.npmjs.com/package/mintlify):
+
+```bash
+npm i -g mintlify
 ```
-npm i -g mint
+
+Then run the following command at the root of this repository (where docs.json is located):
+
+```bash
+mintlify dev
 ```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
-mint dev
-```
-
-View your local preview at `http://localhost:3000`.
-
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
 
 ### Troubleshooting
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+- If Mintlify dev isn't running - Run `mintlify install` to re-install dependencies
+- If a page loads as a 404 - Make sure you are running in a folder with `docs.json`
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+## Publishing Changes
+
+Changes will be deployed to production automatically after pushing to the main branch.

@@ -1,33 +1,88 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "Coplay API"
+description: "Programmatically interact with Coplay in your Unity projects"
 ---
 
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  This API documentation is for developers who want to integrate Coplay's AI
+  capabilities directly into their custom Unity editor tools and extensions.
 </Note>
 
-## Welcome
+## Introduction to the Coplay API
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+Coplay offers a C# API that allows Unity developers to access AI capabilities programmatically, enabling deeper integration with your development workflow and custom tools.
 
 <Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
+  title="Coplay Unity SDK"
+  icon="unity"
+  href="http://discord.com/invite/KmGfEr6d3v"
 >
-  View the OpenAPI specification file
+  Join our Discord to access the Coplay SDK documentation
 </Card>
+
+## Key Capabilities
+
+With the Coplay API, you can:
+
+- Generate code snippets and scripts programmatically
+- Get AI assistance in your custom editor tools
+- Analyze game objects and components
+- Create AI-powered custom inspectors
+- Integrate AI assistance into your build pipeline
+
+## Getting Started
+
+To use the Coplay API in your project, first ensure you have the Coplay package installed and authenticated in your Unity project.
+
+### Basic Implementation
+
+Here's a simple example of using the Coplay API to generate code:
+
+```csharp
+using Coplay;
+using UnityEngine;
+
+public class CoplayCodeHelper : MonoBehaviour
+{
+    public async void GenerateMovementScript()
+    {
+        // Create a request to Coplay
+        var request = new CoplayRequest
+        {
+            Prompt = "Create a script for a third-person character controller with smooth rotation",
+            ContextType = CoplayContextType.CSharpScript,
+            MaxTokens = 1000
+        };
+
+        // Send the request and get the response
+        var response = await CoplayAPI.GenerateCodeAsync(request);
+
+        // Use the response
+        if (response.Success)
+        {
+            Debug.Log("Generated script: " + response.Code);
+            // You could save this to a new file, display in the editor, etc.
+        }
+        else
+        {
+            Debug.LogError("Failed to generate code: " + response.ErrorMessage);
+        }
+    }
+}
+```
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+The Coplay API uses your existing Coplay authentication. As long as you're signed in to Coplay in your Unity Editor, your API calls will be authenticated automatically.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+For CI/CD environments or headless usage, you can authenticate using an API key:
+
+```csharp
+CoplayAPI.Initialize("your-api-key");
 ```
+
+<Note>
+  API keys are available on the Professional and Enterprise plans. Join our
+  [Discord community](http://discord.com/invite/KmGfEr6d3v) to learn more about
+  accessing API keys.
+</Note>

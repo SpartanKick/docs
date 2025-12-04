@@ -1,0 +1,38 @@
+---
+title: "Troubleshooting"
+description: "How to get the most out of Coplay in Unity"
+---
+ 
+Nobody's perfect and neither is AI. In this guide, we'll discuss issues you may encounter while using Coplay. 
+
+## Something went wrong
+When using Coplay, you may get this error message in the chat window:
+```
+Something went wrong. Please try again later.
+```
+This is a generic error message that can occur for various reasons, such as network issues or server problems.
+If you encounter this error, either clear the chat window by starting a new conversation and try again or, 
+if you're  running a long-running task with the chat history as useful context, simply type "Continue where you left off".
+
+Coplay will use the existing history to understand what needs to be done next and continue generating the response.
+
+## Screenshot Loop
+Coplay is a perfectionist and will keep working on a task until it is satisfied with the result. To check its work, Coplay will
+occasionally take screenshots of the Scene or Game view to ensure that the changes are being applied correctly. 
+
+This can sometimes lead to a situation where Coplay is stuck in a loop, taking screenshots of the same view over and over again, 
+with only minimal changes in between. If you notice this happening, you can stop the task by clicking the "Stop" button in the chat window. 
+This will interrupt Coplay's current task and allow you to start a new one.
+
+
+## Compilation Errors
+When writing code, Coplay may generate scripts in an unexpected order, which can cause compilation errors due to missing references.
+
+![Compilation Errors](/images/troubleshooting/compilation_failure.png)
+
+Coplay will typically fix these errors automatically by continuing to generate code until the project compiles successfully. 
+
+If Coplay has stopped running and you see compiliation errors, you can tell Coplay to fix them by starting a new conversation and typing:
+```
+Fix the compilation errors in my project
+```

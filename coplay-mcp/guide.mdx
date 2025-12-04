@@ -1,0 +1,59 @@
+---
+title: "Guide"
+description: "Get started with Coplay MCP in your Unity project in minutes"
+---
+
+<Info>
+  **Prerequisite**: Ensure you have Coplay properly installed in your Unity project before proceeding.
+
+If you haven't installed Coplay yet, please follow our [Installation Guide](/getting-started/installation) first.
+
+You'll need Python 3.11 or higher, and `uv` installed.
+
+</Info>
+
+## What is Coplay MCP
+Coplay MCP is an interface that lets you control Coplay inside Unity from your favorite MCP client such as Cline or Claude Code.
+
+As an example, here's a video in which [we use Coplay's MCP to edit multiple Unity projects simultaneously](https://www.youtube.com/watch?v=lphJPLfkXN8).
+
+## Setting up Coplay MCP
+
+Once you have Coplay installed and authenticated, you're ready to connect the Coplay MCP.
+
+Installing Coplay MCP for Claude Code: `claude mcp add --scope user --transport stdio coplay-mcp --env MCP_TOOL_TIMEOUT=720000 -- uvx --python ">=3.11" coplay-mcp-server@latest`
+
+Or add this config to your favorite MCP Host (e.g. Cursor or Cline):
+```json
+{
+  "mcpServers": {
+    "coplay-mcp": {
+      "autoApprove": [],
+      "disabled": false,
+      "timeout": 720,
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--python",
+        ">=3.11",
+        "coplay-mcp-server@latest"
+      ]
+    }
+  }
+}
+```
+
+To test that your Coplay MCP works, prompt your MCP client (e.g., Cursor or ChatGPT) with something like: `List all of the open unity editors using Coplay MCP`. If this yields the actual list of open editors, you're good to go.
+
+Note: We set the timeout to 720s (12 minutes) because using the coplay_task tool can run for quite a while in Unity depending on the task. If you don't plan to use the coplay_task tool, you can set the timeout to a more reasonable value such as 60s.
+
+## Example config for Codex ClI
+For Codex CLI you need to edit your `~/.codex/config.toml` file to include the Coplay MCP server:
+```
+[mcp_servers.coplay_mcp]
+command = "uvx"
+args = ["--python", ">=3.11", "coplay-mcp-server@latest"]
+env = { "MCP_TOOL_TIMEOUT" = "720000" }
+```
+
+Need more help? Join our [Discord community](http://discord.com/invite/KmGfEr6d3v) for support from the Coplay team and other users.

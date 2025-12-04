@@ -1,0 +1,89 @@
+---
+title: "Configuration"
+description: "Use Coplay's advanced configuration to tailor your experience"
+---
+
+Coplay integrates seamlessly with Unity through an intuitive interface designed to enhance your game development workflow. This guide explains all the UI elements you'll encounter when using Coplay.
+
+## Context
+
+The Context dropdown determines what information Coplay has access to when responding to your queries:
+
+- **File Tree**: Provides access to your project's file structure
+- **Project Settings**: Gives context about your Unity project configuration
+- **Active Scene**: Includes information about the currently open scene
+- **Git History**: Provides access to version control information
+- **Packages**: Shows information about installed packages
+
+<Info>
+  **Example usage**: Select "Active Scene" when asking Coplay to help optimize
+  game objects in your current scene, or select "Project Settings" when
+  troubleshooting configuration issues.
+</Info>
+
+## Mode
+
+Coplay offers several modes that control how tasks are processed. Modes change often, so check the Discord release notes for up‑to‑date best practices. The available modes are:
+
+- **Normal** (default) – Balanced performance that automatically executes a sequence of actions. Suitable for most tasks.
+- **StepByStep** – Pauses after every action and waits for your feedback before continuing. Use this for tasks that require precise placement or manual oversight; slower but more accurate.
+- **OneShotSceneGen** – Generates an entire scene in a single prompt. Primarily used for large scene generation or when providing your own 3D models. This mode is being deprecated since Normal mode now handles most scene generation tasks.
+- **Experimental** – Includes cutting‑edge features such as batch tool calls that speed up execution. This mode is intended for testing and may be less stable.
+- **PipelineRecording** – Records every action in a session so you can replay the sequence or generate variations later. After recording, ask Coplay to "create a variation" to automatically apply changes based on the recorded pipeline.
+- **Orchestrator** – Reads tasks from a `CoplayPlan.md` file and executes them in order. This autopilot mode aims to transform a design document into a working game. It is powerful but still experimental and may take longer to complete tasks.
+
+When in doubt, start with **Normal** mode and adjust based on your use case.
+
+## Model
+
+Coplay lets you choose between the latest AI models from major foundational providers like OpenAI, Anthropic, Google, and X.AI. Each model offers distinct advantages for different Unity development tasks:
+
+#### Anthropic
+
+- **claude-3-7-sonnet**: (Default) Balanced model with exceptional reasoning capabilities; excellent for complex architectural decisions, debugging logic errors, and explaining game mechanics with detailed, well-structured responses. More thorough but slower, taking a step-by-step approach to problem solving.
+- **claude-3-7-thinking**: Advanced reasoning model with enhanced step-by-step thinking capabilities, ideal for complex problem-solving tasks and detailed analysis of Unity systems. Excels at iterative thought processes.
+- **claude-4-sonnet**: Newer general model with improved performance and understanding; offering superior code generation and architectural guidance for Unity projects. Excellent for coding tasks but slower in tool execution.
+- **claude-4-thinking**: Advanced reasoning variant of Claude-4 with enhanced analytical capabilities, perfect for complex debugging and system design challenges that require thorough, methodical analysis.
+
+### Inception
+
+- **mercury-coder-small**: Experimental model that uses diffusion-based inference to generate code incrementally,
+  resulting in significantly faster execution of sequential programming tasks.
+- **mercury-coder-small-stream**: Streaming variant that leverages diffusion techniques to provide real-time
+  response capabilities with enhanced speed benefits.
+
+#### OpenAI
+
+- **gpt-4.1**: Handles tasks in bulk and excels at UI development, image processing, and multiple tool execution. Can work quickly but may perform less well with complex coding tasks. Best for UI-focused work and batch operations.
+- **o3**: Fast, cost-effective model for straightforward development tasks, good for quick syntax questions, simple script generation, and basic Unity workflow assistance during prototyping phases.
+- **o4-mini**: Optimized for quick responses with good balance of speed and capability, effective for common Unity tasks like component setup, basic animations, and UI scripting with concise, practical answers.
+
+### X.AI
+
+- **grok-3**: Excels at creative problem-solving and unconventional solutions.
+
+### Google
+
+- **gemini-2-5-pro**: Strong multimodal capabilities that excels at analyzing visual elements, scene composition, and asset organization. Good with well-structured, multi-step requests and can handle actions in bulk. Offers a balanced approach between Claude's thoroughness and GPT-4.1's speed.
+- **gemini-2-5-flash**: Optimized for speed and efficiency with good baseline understanding of Unity concepts, ideal for quick reference questions, syntax checking, and basic troubleshooting when immediate guidance is needed.
+
+## Action Recording
+
+Coplay can record your actions in the Unity Editor, allowing you to:
+
+1. Track movements and changes to game objects
+2. Delete specific recorded actions using the "×" button
+3. Clear all recorded actions at once
+4. Save recordings for future reference
+
+When you've finished recording actions, you can save them with a custom name and use them for additional context in future tasks.
+
+<Info>
+  **Example usage**: Record a sequence of object placements to document your
+  level design process, then ask Coplay to analyze the pattern or suggest
+  improvements.
+</Info>
+
+## Memory (configurability coming soon...)
+
+Long-term memory is currently stored server side, we will soon release support for listing and continuing prior conversations

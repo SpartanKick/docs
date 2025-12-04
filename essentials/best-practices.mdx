@@ -1,0 +1,236 @@
+---
+title: "Best Practices"
+description: "How to structure your prompts for better results with Coplay"
+---
+
+Coplay is designed to understand natural language, but structuring your requests in certain ways can help you get better and more accurate responses. This guide will help you communicate effectively with Coplay in Unity.
+
+## Request Types
+
+Here are the main types of requests you can make to Coplay:
+
+### Questions
+
+Best for when you need information or explanations.
+
+```
+"How do I implement a jump mechanic in Unity?"
+"What's the difference between Update and FixedUpdate?"
+"Why is my raycast not detecting collisions?"
+```
+
+<Tip>
+  Be specific with your questions. The more details you provide, the more
+  tailored Coplay's response will be to your situation.
+</Tip>
+
+### Code Generation
+
+Ask Coplay to write code for you by clearly stating what you need.
+
+```
+"Write a script for a third-person camera controller"
+"Create a health system with damage and healing functions"
+"Generate a JSON parser for my save game data"
+```
+
+### Code Analysis
+
+Share your existing code for Coplay to analyze, explain, or improve.
+
+```
+"What's wrong with this code? [paste your code]"
+"Optimize this function for better performance: [paste function]"
+"Explain how this script works: [paste script]"
+```
+
+## Text Formatting for Better Results
+
+Formatting your messages can help Coplay understand your needs better.
+
+| Technique       | How to use it                            | Example                                                                                                 |
+| --------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Be specific     | Include details about your goal          | "Create a script that makes the camera follow the player **with smooth damping** and **height offset**" |
+| Use sections    | Separate different parts of your request | "**Context**: I'm making a 2D platformer. **Question**: How should I handle wall jumping?"              |
+| Provide context | Explain your project setup               | "I'm using **Unity 2022.1** with the **URP** rendering pipeline and need help with..."                  |
+
+## Effective Prompting Techniques
+
+### Step-by-Step Instructions
+
+When you need Coplay to help with a complex task, break it down into steps:
+
+```
+"I want to create an inventory system. First, help me design the data structure.
+Once that's done, I'll ask for help implementing the UI."
+```
+
+### Iterative Refinement
+
+Start with a basic request and then refine it based on Coplay's response:
+
+> Initial: "Create a player movement script"
+>
+> Follow-up: "That's good, but can you modify it to include sprinting when the Shift key is pressed?"
+
+## Code Examples
+
+When sharing code with Coplay, use code blocks to make it easier to read:
+
+```csharp
+// Ask about this code
+void Update() {
+    if (Input.GetKeyDown(KeyCode.Space)) {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+}
+```
+
+## Unity-Specific Terminology
+
+Using accurate Unity terminology helps Coplay understand exactly what you're asking:
+
+| General Term | Unity-Specific Term            |
+| ------------ | ------------------------------ |
+| 3D object    | GameObject                     |
+| Property     | Component, Parameter, or Field |
+| Screen       | Scene, Game View, or UI Canvas |
+| Code file    | Script or MonoBehaviour        |
+
+## Mathematical Expressions
+
+Coplay can understand mathematical expressions, which is useful for game physics and graphics questions:
+
+<Latex>F = m \times a</Latex>
+
+```
+"How do I calculate the force needed to make my object jump to a height of h
+using the formula F = m × a?"
+```
+
+## Sample Conversation Flow
+
+Here's an example of an effective conversation with Coplay:
+
+> **You**: I'm trying to make an enemy that patrols between waypoints. Can you help me with the script?
+>
+> **Coplay**: [Provides basic patrol script]
+>
+> **You**: Thanks! Now how can I make the enemy detect and chase the player when they get close?
+>
+> **Coplay**: [Builds on previous script to add player detection and chase behavior]
+>
+> **You**: One last thing - how do I make the enemy return to patrolling when it loses sight of the player?
+>
+> **Coplay**: [Completes the AI behavior with returning to patrol functionality]
+
+## Workflow Strategies
+
+### Be Iterative
+
+Don't try to accomplish everything in one large request. Break down your needs into smaller, manageable chunks:
+
+```
+"First, help me create a basic player controller"
+→ "Now add jumping functionality to the controller"
+→ "Finally, add wall-jumping mechanics"
+```
+
+### Choose the Right Mode
+
+**Agent Mode** is ideal for straightforward, focused tasks:
+
+```
+"Fix this compilation error in my script"
+"Add a health bar to my UI"
+"Create a simple pickup system"
+```
+
+**Normal Mode** works better for open-ended, exploratory requests:
+
+```
+"I want to design a combat system for my RPG - what are some approaches?"
+"Help me brainstorm mechanics for a puzzle platformer"
+"What's the best way to structure my game's architecture?"
+```
+
+### Communication Tips
+
+**Don't hesitate to interrupt Coplay** if it's going in the wrong direction:
+
+> "Stop - that's not what I need. Let me clarify..."
+
+**Be direct when you're not satisfied:**
+
+```
+"This isn't working for me. I need a simpler solution."
+"The code you provided is too complex. Can you make it more basic?"
+"I'm looking for something different - here's what I actually want..."
+```
+
+### Start Fresh for New Tasks
+
+**Use a new conversation for each major task** to avoid context confusion:
+
+- ✅ New conversation: "Create an inventory system"
+- ✅ New conversation: "Debug my movement script"
+- ❌ Same conversation: Mixing inventory questions with movement debugging
+
+### Model Selection Strategy
+
+**Experiment with different models** based on your task:
+
+```
+Simple tasks → Lighter models (faster, less overthinking)
+Complex debugging → Thinking models (more thorough analysis)
+Creative brainstorming → Balanced models
+```
+
+**For open-ended requests, ask for a plan first:**
+
+> "Before you start coding, can you outline your approach to building this inventory system?"
+
+### Avoiding Over-Engineering
+
+**Coplay can overthink like humans.** For simple tasks:
+
+```
+❌ "Create a comprehensive, scalable, enterprise-grade player movement system"
+✅ "Create a basic player movement script with WASD controls"
+```
+
+**Match the model to the task complexity:**
+
+- **First implementation**: Use simpler models to avoid over-building
+- **Debugging/Optimization**: Use thinking models for thorough analysis
+- **Refactoring**: Thinking models excel at understanding complex codebases
+
+### Prompt Enhancement
+
+**Pre-process and enrich your prompts** with context:
+
+```
+Instead of: "Make a shooting script"
+
+Try: "Create a shooting script for a 2D side-scroller where:
+- Player shoots with left mouse click
+- Bullets are instantiated prefabs
+- Maximum 3 bullets on screen at once
+- Bullets destroy after 2 seconds"
+```
+
+### Supercharge with MCP Servers
+
+**Use MCP servers to enhance your workflow:**
+
+```
+"Use the Blender MCP server to import this model and set up the animations"
+"Connect to the Git MCP server to manage version control for my project"
+"Use the file system MCP server to organize my project assets"
+```
+
+> MCP (Model Context Protocol) servers provide specialized tools that can extend Coplay's capabilities beyond Unity development.
+
+## Join Our Community
+
+For more tips on effectively using Coplay, join our [Discord community](http://discord.com/invite/KmGfEr6d3v) where you can share your experiences and learn from other users.

@@ -1,0 +1,189 @@
+---
+title: "Build a Chess Game"
+description: "Learn how to create a chess game in Unity using Coplay"
+---
+
+This guide will walk you through the process of setting up the game board, 
+creating chess pieces, and implementing basic game logic, including an AI
+opponent that can play against you.
+
+ 
+<Steps>
+  <Step title="Prerequisites">
+    To go through this tutorial, you should have the following: 
+    - A new Unity project with Coplay installed. 
+    <Warning>
+      When making a new project, make sure to select the **3D Built-In Render Pipeline** template as this tutorial uses assets build with
+      that rendering pipeline. This is required for the chess assets you'll be using. You can use the HDRP or URP templates, but you will
+      need to adjust the materials and shaders accordingly. 
+    </Warning> 
+    - If you haven't installed Coplay yet, follow the [installation
+    guide](https://docs.coplay.dev/tutorials/installation) 
+    - A Unity Asset Store with this [free chess asset
+    pack](https://assetstore.unity.com/packages/3d/props/chess-pieces-board-70092)
+    added (trust us, it's easier than creating your own chess pieces): 
+    ![Chess Asset Pack](/images/tutorial/chess/chess_asset_screenshot.png)
+  </Step>
+  <Step title="Configure your Coplay settings">
+    - Open the Coplay settings window by going to **Coplay \> Toggle Window** in
+    the Unity menu or pressing `⌘ + G` or `CTRL + G` depending on whether you're
+    on Mac or PC. 
+    - Make sure the **Auto-approve** option is checked. 
+    - Set the  **Model** to `claude-4-sonnet` (feel free to play around 
+    with other models -- we have generally found the best performance with this one).
+    ![coplay_settings](/images/tutorial/chess/coplay_settings.png)
+  </Step>
+  <Step title="Import Your Chess Assets">
+    - Download the chess asset pack from the Unity Asset Store.
+    - Navigate to `Window > My Assets` and import the downloaded package into your Unity project. 
+    - You should now see a folder named `Chess Pieces` in your project window.
+    <Info>
+    Make sure to uncheck the `Blender.zip` and `Chess Demo.Unity` files when importing the package,
+    as they are not needed for this tutorial.
+    </Info>
+    ![Chess Assets](/images/tutorial/chess/chess_import.png)
+  </Step>
+  <Step title="Write a prompt telling Coplay what to do">
+  This is the fun part. Use the prompt below as a starting point
+  but feel free to modify it to your liking once you have a working game.
+
+  This prompt is going to change the following:
+  - Each game piece controlling possible actions 
+  - A game manager that initializes the board with appropriate layout and manages game state
+  - Mouse input controller using Unity's Input System with raycast detection for piece selection,
+  -  AI opponent with minimax algorithm and adjustable difficulty levels.
+
+  ```md Prompt Instructions
+
+## Goal
+Create a chess game using assets from `Assets/Chess Set` directory.
+
+## Development Plan
+
+### 1. Piece Scripts (`Scripts/Pieces/`)
+- Create individual scripts for each chess piece type (Pawn, Rook, Knight, Bishop, Queen, King)
+- Each script controls movement rules and logic for that piece type
+- Use inheritance with a base `ChessPiece` class for common functionality
+
+### 2. Game Manager Script and Component
+- Create `GameManager.cs` to handle core game logic
+- Initialize board with pieces in starting positions using:
+  - Prefabs from `Assets/Chess Set/Prefabs/`
+  - Scripts from `Scripts/Pieces/`
+- Assign the prefabs via the Inspector
+- Manage turn system and game state
+
+### 3. Mouse Input Controller Script and Component
+- Use the new Unity Input System
+- Use raycast to detect piece/square selection
+- Visual feedback for selected pieces and valid moves
+- Deselection logic (same piece click or empty square)
+- Clicking on a valid square moves the piece to that square
+- Change piece material to indicate selection
+- Add highlight effect to valid move squares
+
+### 4. AI Opponent Script and Component
+- Create AI script that makes legal moves
+- Implement basic chess strategies
+- Include adjustable difficulty levels as script variables
+- Use minimax algorithm or similar for move selection
+- Use raycasting to detect piece collision.
+- The AI should collide with opposing pieces to take them whenever possible.
+- IMPORTANT: If a king piece is captured, the game should end immediately.
+
+## Technical Requirements
+
+### Camera Setup
+- Position camera x = 0, y = 40, z = -40
+- Set camera rotation to 50 degrees for optimal board view
+
+### Piece Positioning
+**Important**: 
+- Calculate piece positions using board square count and Chess Board Play Surface dimensions
+- The Chess Board Play Surface of the board is 48x48 units and there are 64 squares, so each square is 6x6 units.
+- **Rotations**:
+  - All pieces: X-axis = -90° (face upward)
+  - White pieces: Y-axis = -90°
+  - Black pieces: Y-axis = 90°
+  - Chess Board: X-axis = -90° (face upward)
+- IMPORTANT: Set Y position = 1 for pawns
+- IMPORTANT: Set Y position = 0 for all other pieces
+- IMPORTANT: Add box colliders to all pieces with size X = 0.035 Y = 0.03 Z = 0.05
+
+### Best Practices
+- Initialize the board and all pieces in the `GameManager` script.
+- Use `[SerializeField]` for inspector variables
+- Save progress regularly during development
+- IMPORTANT: DO not use the Unity Editor to add the board and pieces to the scene.
+- IMPORTANT: Add a `BoardClickPlane` GameObject at Y position = 0 and scale of X = 4.8 Y = 1 and Z = 4.8.
+- IMPORTANT: Assign a MeshCollider with Mesh value of Plane to the `BoardClickPlane` GameObject.
+- IMPORTANT: Add a MeshFilter with Mesh value of Plane to the `BoardClickPlane` GameObject.
+- IMPORTANT: Assign the `BoardClickPlane` GameObject a tag called `BoardClickPlane` to detect clicks on the board.
+- IMPORTANT: Verify the correct action map is active (usually "UI" for mouse clicks)
+- IMPORTANT: Check if Input Actions asset is assigned correctly
+- IMPORTANT: Use direct mouse input for reliable clicking - e.g. Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+## Debugging Tips
+### 1. Check Unity Console Logs
+- Look for `MissingMethodException: Method 'OnClick' not found` errors
+- Check for Input System related errors
+- Enable debug logging in MouseInputController to trace click detection
+
+### 2. Verify Input System Configuration
+- Ensure PlayerInput component is properly configured
+- Check if Input Actions asset is assigned correctly
+- Verify the correct action map is active (usually "UI" for mouse clicks)
+
+### 3. Test Raycast Detection
+Add debug logging to MouseInputController to verify:
+- Mouse clicks are detected
+- Raycasts hit pieces correctly
+- Raycasts hit board/empty squares
+
+## Implementation Order
+1. Set up the camera
+2. Create base piece class and individual piece scripts
+3. Set up GameManager with board initialization and BoardClickPlane
+4. Create mouse input controller for piece selection and movement
+5. Implement piece positioning and rotation system
+6. Create AI opponent with difficulty settings
+    
+  ```
+  </Step>
+  <Step title="Run the prompt">
+    - Copy the prompt above and paste it into the Coplay chat window. 
+    - Press `Enter` to send the prompt to Coplay. 
+    - Wait for Coplay to process the request and generate your chess game. 
+    </Step>
+    <Step title="Go get a coffee">
+    You've earned it. Coplay's got it from here.
+    </Step>
+    <Step title="Check in on Coplay's progress">
+    - After a few minutes, check the Coplay chat window to see the progress of
+    the chess game creation. 
+    - Coplay will provide updates on the game setup but will stop 
+    every 20 actions to ask for your approval. This is expected and default behavior to ensure 
+    you have control over the changes being made to your project. 
+    - If Coplay asks for approval just click the **Approve** button to continue. 
+    - If you want to make changes to the game, you can stop Coplay 
+    by pressing `Shift + ⌫` or clicking the `Stop Thinking` button in the Coplay chat window.
+  </Step>
+  <Step title="Play the Game">
+    - Once Coplay has finished creating the chess game, 
+    you can play it by clicking the **Play** button in the Unity Editor. 
+    - Follow the on-screen instructions to start playing against the AI opponent.
+    - If you want to change the AI difficulty, you can do
+     so by modifying the AI script in the `Assets/Chess Pieces/Scripts` folder.
+  </Step>
+  <Step title="Share Your Game with Us!">
+    We would love to see what you have created!
+    Share your chess game with us on social media and tag us! 
+    Even better, share it in the Coplay Discord community.
+  </Step>
+    <Step title="Take Your Game to the Next Level!">
+    Now that you have a basic chess game, consider enhancing it with additional features:
+    - [Implement a timer for each player's turn to increase the challenge.]() - Coming soon!
+    - [Create custom pieces in Blender and import them into Unity.]() - Coming soon!
+    - [Implement advanced AI strategies for a more challenging opponent.]() - Coming soon!
+  </Step>
+</Steps>
