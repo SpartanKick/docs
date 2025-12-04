@@ -15,8 +15,6 @@ Define where you are starting. Include the necessary background, the existing is
 
 - **Example:** "I have a third-person camera system using Cinemachine. The shake on impact is jarring."
 
-![Initialstate Png+ Existing In Indexed Db Mintlif](/initialstate.png)
-
 ### **2. Desired Outcome (The Goal)**
 
 State exactly what you want the AI to deliver. Be specific about the functionality and the performance criteria.
@@ -46,26 +44,23 @@ Avoid generalized language. Use file pinning (like the `@` symbol) or the in-edi
 - **Effective:** "Please update the `PlayerAttack()` function inside **`@MeleeCombatSystem.cs`** to..."
 - **Ineffective:** "Fix the player's attack script..."
 
-### **Use the Action Recorder**
-
-If your workflow involves complex, sequential tasks in the Unity editor (like configuring an Animator component or adjusting particle effects), use the **Action Recorder** to show **Coplay** the exact steps you typically perform. The AI can then use this recorded workflow as part of its context.
-
 <Warning>
   Asking **Coplay** to perform tasks like "Fix all compilation errors" will yield poor results. Be precise: "Address the specific type error in the **`@HealthBarUI.cs`** script."
 </Warning>
 
 ---
 
-## ♻️ Dealing with Subpar Outputs
+## Dealing with Subpar Outputs
 
-If **Coplay** generates an incorrect or incomplete response, resist the urge to debug it conversationally.
-
-### **Prioritize the Edit Function**
-
-If the result is close, use the **Edit** button on your original prompt to add a specific correction or clarification, then regenerate the response.
-
-- **Do this:** "The code is great, but change the **`gameObject.Find()`** call to use **`GetComponentInChildren()`** instead."
+If **Coplay** generates an incorrect or incomplete response, resist the urge to debug it conversationally within the same thread. Since you cannot edit past prompts, this only creates confusion.
 
 ### **Know When to Reset**
 
-If the AI misunderstands the core objective after the first attempt, it's more efficient to **Start a New Thread**. A clean start ensures the model is not polluted by the failed attempts and has a fresh contextual memory for your request.
+If the AI misunderstands the core objective after the first attempt, it is always the most efficient choice to **Start a New Thread**.
+
+- A clean start ensures the model is not polluted by the failed attempts and has a fresh contextual memory for your request.
+- When starting the new thread, you may need to **re-pin your assets** and provide richer **Initial State** context to guide the AI correctly this time.
+
+<Warning>
+  **NEVER** attempt to debug or fix a massive, incorrect AI output by conversationally pointing out dozens of errors. **Start a New Thread instead.**
+</Warning>
