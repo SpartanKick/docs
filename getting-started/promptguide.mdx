@@ -1,0 +1,67 @@
+---
+title: Prompt Guide
+description: Master the art of contextual prompting to receive precise, actionable results from Coplay in Unity.
+---
+
+Effective communication is key to efficiency. By organizing your requests using a clear framework, you eliminate guesswork for Coplay and ensure the output—be it code, refactoring, or scene analysis—is always ready to use in your Unity project.
+
+## 🧱 The Three Pillars of a Great Prompt
+
+Every high-quality Coplay prompt should contain these three components:
+
+### **1. Initial State (The Context)**
+Define where you are starting. Include the necessary background, the existing issue, or the component you plan to modify.
+
+* **Example:** "I have a third-person camera system using Cinemachine. The shake on impact is jarring."
+
+### **2. Desired Outcome (The Goal)**
+State exactly what you want the AI to deliver. Be specific about the functionality and the performance criteria.
+
+* **Example:** "Refactor the camera script to smoothly ramp up and then immediately decay the shake effect over 0.75 seconds to feel more natural."
+
+### **3. Response Specifications (The Format)**
+Tell Coplay where the change should happen and how the output should be structured (e.g., full script, just a function, documentation).
+
+* **Example:** "Provide the full C# script for **`@CameraControl.cs`** with the new logic, ensuring all public fields are serialized."
+
+<Tip title="Quick Reference">
+A great prompt is always focused: **What is happening?** ➡️ **What should happen?** ➡️ **Where should it go?**
+</Tip>
+
+---
+
+## 🧭 Ensuring Project Focus
+
+Coplay works because it knows your project. You must guide its attention to the correct files and assets.
+
+### **Always Reference Assets**
+
+Avoid generalized language. Use file pinning (like the `@` symbol) or the in-editor selection tools to ensure Coplay is working on the correct scripts, prefabs, or scenes.
+
+* **Effective:** "Please update the `PlayerAttack()` function inside **`@MeleeCombatSystem.cs`** to..."
+* **Ineffective:** "Fix the player's attack script..."
+
+### **Use the Action Recorder**
+
+For complex, multi-step tasks, use the Action Recorder feature to show Coplay the sequence of actions you typically perform. The AI can then use this recorded workflow as part of its context.
+
+<Warning title="The Danger of Vague Prompts">
+Asking Coplay to perform tasks like "Fix all compilation errors" will yield poor results. Be precise: "Address the specific type error in the **`@HealthBarUI.cs`** script."
+</Warning>
+
+---
+
+## ♻️ Dealing with Subpar Outputs
+
+If Coplay generates an incorrect or incomplete response, resist the urge to debug it conversationally.
+
+### **Prioritize the Edit Function**
+
+If the result is close, use the **Edit** button on your original prompt to add a specific correction or clarification, then regenerate the response.
+
+* **Do this:** "The code is great, but change the **`gameObject.Find()`** call to use **`GetComponentInChildren()`** instead."
+* **Don't do this:** "That's wrong, that method won't work, try another way, and fix the loop."
+
+### **Know When to Reset**
+
+If the AI misunderstands the core objective after the first attempt, it's more efficient to **Start a New Thread**. A clean start ensures the model is not polluted by the failed attempts and has a fresh contextual memory for your request.
