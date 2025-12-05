@@ -13,22 +13,22 @@ Every high-quality **Coplay** prompt should contain these three components:
 
 Define where you are starting. Include the necessary background, the existing issue, or the component you plan to modify.
 
-- **Example:** "I have a third-person camera system using Cinemachine. The shake on impact is jarring."
+> **Example:** "I have a third-person camera system using Cinemachine. The shake on impact is jarring."
 
 ### **2. Desired Outcome (The Goal)**
 
 State exactly what you want the AI to deliver. Be specific about the functionality and the performance criteria.
 
-- **Example:** "Refactor the camera script to smoothly ramp up and then immediately decay the shake effect over 0.75 seconds to feel more natural."
+> **Example:** "Refactor the camera script to smoothly ramp up and then immediately decay the shake effect over 0.75 seconds to feel more natural."
 
 ### **3. Response Specifications (The Format)**
 
 Tell **Coplay** where the change should happen and how the output should be structured.
 
-- **Example:** "Provide the full C# script for **`@CameraControl.cs`** with the new logic, ensuring all public fields are serialized."
+> **Example:** "Provide the full C# script for **`@CameraControl.cs`** with the new logic, ensuring all public fields are serialized."
 
 <Tip>
-  A great prompt is always focused: **What is happening?** ➡️ **What should happen?** ➡️ **Where should it go?**
+A great prompt is always focused: **What is happening?** ➡️ **What should happen?** ➡️ **Where should it go?**
 </Tip>
 
 ---
@@ -41,11 +41,11 @@ Tell **Coplay** where the change should happen and how the output should be stru
 
 Avoid generalized language. Use file pinning (like the `@` symbol) or the in-editor selection tools to ensure **Coplay** is working on the correct scripts, prefabs, or scenes.
 
-- **Effective:** "Please update the `PlayerAttack()` function inside **`@MeleeCombatSystem.cs`** to..."
-- **Ineffective:** "Fix the player's attack script..."
+> **Effective:** "Please update the `PlayerAttack()` function inside **`@MeleeCombatSystem.cs`** to..."
+> **Ineffective:** "Fix the player's attack script..."
 
 <Warning>
-  Asking **Coplay** to perform tasks like "Fix all compilation errors" will yield poor results. Be precise: "Address the specific type error in the **`@HealthBarUI.cs`** script."
+Asking **Coplay** to perform tasks like "Fix all compilation errors" will yield poor results. Be precise: "Address the specific type error in the **`@HealthBarUI.cs`** script."
 </Warning>
 
 ---
@@ -61,6 +61,6 @@ If the AI misunderstands the core objective after the first attempt, it is alway
 - A clean start ensures the model is not polluted by the failed attempts and has a fresh contextual memory for your request.
 - When starting the new thread, you may need to **re-pin your assets** and provide richer **Initial State** context to guide the AI correctly this time.
 
-<Warning>
-  **NEVER** attempt to debug or fix a massive, incorrect AI output by conversationally pointing out dozens of errors. **Start a New Thread instead.**
+<Warning title="The Danger of Fixing Mistakes Inline">
+**NEVER** attempt to debug or fix a massive, incorrect AI output by conversationally pointing out dozens of errors. **Start a New Thread instead.**
 </Warning>
