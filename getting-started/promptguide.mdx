@@ -15,11 +15,15 @@ Define where you are starting. Include the necessary background, the existing is
 
 > **Example:** "I have a third-person camera system using Cinemachine. The shake on impact is jarring."
 
+![Initialstate Pn](/images/Prompt-Guide/initialstate.png)
+
 ### **2. Desired Outcome (The Goal)**
 
 State exactly what you want the AI to deliver. Be specific about the functionality and the performance criteria.
 
 > **Example:** "Refactor the camera script to smoothly ramp up and then immediately decay the shake effect over 0.75 seconds to feel more natural."
+
+![Refactor Pn](/images/Prompt-Guide/refactor.png)
 
 ### **3. Response Specifications (The Format)**
 
@@ -27,11 +31,11 @@ Tell **Coplay** where the change should happen and how the output should be stru
 
 > **Example:** "Provide the full C# script for **`@CameraControl.cs`** with the new logic, ensuring all public fields are serialized."
 
-<Tip>
-A great prompt is always focused: **What is happening?** ➡️ **What should happen?** ➡️ **Where should it go?**
-</Tip>
+![The Format Pn](/images/Prompt-Guide/TheFormat.png)
 
----
+<Tip>
+  A great prompt is always focused: **What is happening?** ➡️ **What should happen?** ➡️ **Where should it go?**
+</Tip>
 
 ## Ensuring Project Focus
 
@@ -41,11 +45,10 @@ A great prompt is always focused: **What is happening?** ➡️ **What should ha
 
 Avoid generalized language. Use file pinning (like the `@` symbol) or the in-editor selection tools to ensure **Coplay** is working on the correct scripts, prefabs, or scenes.
 
-> **Effective:** "Please update the `PlayerAttack()` function inside **`@MeleeCombatSystem.cs`** to..."
-> **Ineffective:** "Fix the player's attack script..."
+> **Effective:** "Please update the `PlayerAttack()` function inside **`@MeleeCombatSystem.cs`** to..." **Ineffective:** "Fix the player's attack script..."
 
 <Warning>
-Asking **Coplay** to perform tasks like "Fix all compilation errors" will yield poor results. Be precise: "Address the specific type error in the **`@HealthBarUI.cs`** script."
+  Asking **Coplay** to perform tasks like "Fix all compilation errors" will yield poor results. Be precise: "Address the specific type error in the **`@HealthBarUI.cs`** script."
 </Warning>
 
 ---
@@ -61,6 +64,6 @@ If the AI misunderstands the core objective after the first attempt, it is alway
 - A clean start ensures the model is not polluted by the failed attempts and has a fresh contextual memory for your request.
 - When starting the new thread, you may need to **re-pin your assets** and provide richer **Initial State** context to guide the AI correctly this time.
 
-<Warning title="The Danger of Fixing Mistakes Inline">
-**NEVER** attempt to debug or fix a massive, incorrect AI output by conversationally pointing out dozens of errors. **Start a New Thread instead.**
+<Warning>
+  **NEVER** attempt to debug or fix a massive, incorrect AI output by conversationally pointing out dozens of errors. **Start a New Thread instead.**
 </Warning>
