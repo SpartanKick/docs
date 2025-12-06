@@ -33,6 +33,12 @@
             ]
           },
           {
+            "group": "Modes",
+            "pages": [
+              "essentials/Modes"
+            ]
+          },
+          {
             "group": "Coplay MCP",
             "pages": ["coplay-mcp/guide"]
           },
