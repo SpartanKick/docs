@@ -1,0 +1,23 @@
+---
+title: Modes Overview
+description: Understand the six operational modes that dictate Coplay's speed, interaction style, and execution scope within your Unity project.
+---
+
+The power of Coplay comes from its ability to adapt its execution style to your task. By selecting the appropriate mode, you instruct the AI on whether to prioritize speed, safety, automation, or deep project analysis.
+
+## ⚙️ Execution Modes
+
+| Mode | Purpose | Best For |
+| :--- | :--- | :--- |
+| **Normal** | **Standard Operation.** The default setting that automatically executes a sequence of actions with balanced performance. | Quick tasks, simple code requests, and general generation where immediate execution is desired. |
+| **StepByStep** | **Guided Execution.** Pauses after every action and waits for your confirmation before continuing. | Debugging, learning a new workflow, or high-stakes refactoring where detailed, manual oversight is necessary. |
+| **OneShotSceneGen** | **Rapid Scene Creation.** Generates an entire scene or environment from a single, comprehensive prompt. | Prototyping large environments quickly, especially when integrating provided 3D models. |
+| **Experimental** | **Cutting-Edge Features.** Includes features under active development (e.g., batch tool calls). Functions may be less stable. | Advanced users who want to try new, bleeding-edge capabilities; use with caution. |
+| **PipelineRecording** | **Workflow Automation.** Records a sequence of user actions in the Unity Editor so you can replay the sequence or generate variations later. | Automating highly repetitive setup tasks and creating consistent templates for asset configuration. |
+| **Orchestrator** | **Design Document Automation.** An "autopilot" mode that reads tasks from a `CoplayPlan.md` file and executes them in order, aiming to transform a design document into a working game. | Executing long, multi-step tasks defined in a single game design document. |
+
+---
+
+### Key Workflow Tip
+
+For tasks that are complex but manageable, start in **Normal** mode. If the task is critical or fails, switch to **StepByStep** mode to debug the AI's logic flow.
