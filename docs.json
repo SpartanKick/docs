@@ -44,7 +44,11 @@
           },
           {
             "group": "Tutorials",
-            "pages": ["tutorials/chess", "tutorials/blender-mcp"]
+            "pages": [
+              "tutorials/chess",
+              "tutorials/blender-mcp", 
+              "tutorials/Creating_UI"
+            ]
           },
           {
             "group": "Unity MCP",
