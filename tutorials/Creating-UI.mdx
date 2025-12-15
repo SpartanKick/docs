@@ -1,0 +1,78 @@
+---
+title: "Creating UI with Coplay"
+description: "Learn how to use Coplay to design complex UI windows, manage prefabs, and maintain visual consistency across your Unity project."
+---
+
+Building user interfaces in Unity often involves navigating deeply nested menus. **Coplay** simplifies this by allowing you to generate entire UI windows from natural language, automatically hook up logic, and ensure new elements match your existing project style.
+
+<Steps>
+  <Step title="Prerequisites">
+    Before starting this tutorial, ensure you have:
+    - Unity installed with the Coplay extension.
+    - The **Active Scene** and **File Tree** context enabled in your Coplay settings.
+    - A basic understanding of Unity's UGUI or UI Toolkit.
+  </Step>
+
+  <Step title="Define Your UI Structure">
+    Instead of a vague request like "Make a menu," provide a structural prompt. This helps Coplay understand the hierarchy of the window you want to build.
+
+    **Example Prompt:**
+    ```text
+    "Create a complex Settings window as a Canvas. Include a background panel and three child tabs for 'Audio', 'Graphics', and 'Controls'. Ensure all buttons use a Vertical Layout Group for organization."
+    ```
+    
+    
+  </Step>
+
+  <Step title="Style Matching & Consistency">
+    To ensure your new UI doesn't look out of place, use Coplay to analyze your existing assets. 
+
+    1. **Pin your source:** Use the `@` symbol to reference an existing UI Prefab.
+    2. **Prompt for matching:** "Create a new 'Level Up' popup that matches the button styles, fonts, and color palette of **`@MainHUD_Prefab`**."
+
+    <Tip>
+      Advanced models like GPT-5 can analyze existing styles and replicate them perfectly across new prefabs.
+    </Tip>
+  </Step>
+
+  <Step title="Save as Prefabs">
+    AI-generated UI is most useful when it's reusable. Once you are happy with a layout, instruct Coplay to save it.
+
+    **Prompt:**
+    ```text
+    "This looks perfect. Now, save this entire Settings window as a Prefab in the 'Assets/Prefabs/UI' folder."
+    ```
+  </Step>
+
+  <Step title="Hook Up C# Logic">
+    After the visual elements are in place, bridge the gap to your game code.
+
+    * **Example:** "Reference the **`@UIManager.cs`** script and hook up the 'Back' button's `OnClick` event to the `CloseCurrentWindow()` method."
+  </Step>
+
+  <Step title="Managing 'Context Rot'">
+    As your UI becomes more complex, the AI can experience "context rot" over long sessions. 
+
+    **The Workflow Fix:** - Once a specific window is built and saved as a prefab, **Start a New Thread**. 
+    - This clears out the old "designing" noise and gives the AI a fresh head-start for the next task, such as coding the data-binding or animations.
+  </Step>
+</Steps>
+
+---
+
+## 🎥 Video Tutorials
+
+*Check out these walkthroughs by @AlexanderD to see these workflows in action:*
+
+<CardGroup cols={2}>
+  <Card title="Generating UI Prefabs" icon="play" href="https://www.youtube.com/watch?v=uaTCHemCJ08">
+    Learn how to create and save complex windows from an image.
+  </Card>
+  <Card title="AI UI Logic" icon="play" href="#">
+    Connecting buttons to C# methods with AI (Coming Soon).
+  </Card>
+</CardGroup>
+
+<Info>
+**Pro Tip:** For high-stakes UI work, use **StepByStep Mode**. It allows you to approve each layout group adjustment before the AI proceeds, preventing messy hierarchies.
+</Info>
