@@ -1,0 +1,67 @@
+---
+title: "Common Issues"
+description: "Quick solutions for when Coplay is stuck, unresponsive, or experiencing installation errors."
+---
+
+While Coplay is designed to handle complex Unity tasks autonomously, you may occasionally encounter performance loops or installation errors. Use this guide to resolve common issues and get back to developing.
+
+## 🛑 Installation & Environment Issues
+
+### **UV Package Manager Not Found**
+If you receive an error stating that the `uv` package manager is missing—even after installing it via PowerShell, winget, or pip—it is likely because your system's environment variables haven't refreshed.
+
+* **The Solution:** Restart your PC. 
+* **Why it happens:** Some installers fail to propagate the new "PATH" variables to all active command-line instances and the Unity Editor. A full restart ensures that the `uv` command is globally recognized.
+
+<Warning title="Required Restart">
+  If you've just installed UV and Coplay still can't find it, **restart your computer** before attempting further troubleshooting. This is the most common fix for initial setup errors.
+</Warning>
+
+---
+
+## 🛑 Execution Issues
+
+### **Stuck at "Executing..."**
+If the chat window stays on the "Executing..." state for more than 30–60 seconds without any changes appearing in the Unity Editor, the task may have hung. 
+
+* **Option 1: Create a New Task.** Often, a specific task gets caught in a context loop. Starting a fresh thread clears the memory and allows Coplay to try a different approach.
+* **Option 2: Restart Coplay.** Close the Coplay window in Unity and re-open it via the **Window** menu.
+
+<Accordion title="Option 3: Hard Reset (Package Re-import)">
+  If you are unable to open a new chat or the UI is completely unresponsive:
+  1. Close Unity.
+  2. Navigate to your project's `Packages` directory.
+  3. Delete the **Coplay** folder. 
+  4. Re-open Unity. The editor will automatically re-import the package, clearing any corrupted local state.
+</Accordion>
+
+### **The Screenshot Loop**
+Coplay occasionally takes screenshots of your Scene or Game view to verify its work. If you notice it taking the same screenshot repeatedly:
+* Click the **"Stop"** button in the chat window.
+* Start a new thread and refine your prompt to be more specific about the target object or property.
+
+---
+
+## 💡 Troubleshooting Tips
+
+<Tip title="Using Logs for Support">
+If an issue persists, click the **"Send logs"** button in the Coplay window. This allows our team to analyze data and identify if the bottleneck is network-related or a specific tool conflict.
+</Tip>
+
+<Tip title="Handling Errors">
+If you encounter a "Something went wrong" message, you can often simply type **"Continue where you left off"** to prompt Coplay to resume its last task using history.
+</Tip>
+
+---
+
+## 🛠 Reporting a Bug
+
+If these steps do not resolve your issue, please provide the following details when reaching out for support:
+
+1. **Unity Version:** (e.g., Unity 6 or 2022.3 LTS).
+2. **Reproduction Steps:** What were you trying to achieve? (e.g., "Refactoring a NavMesh script").
+3. **Logs:** Let us know if you have already used the "Send Logs" function.
+
+<Note>
+Always ensure your Unity Editor is open and the **MCP for Unity** bridge is active (**Window > MCP for Unity**) before starting a Coplay session.
+</Note>
