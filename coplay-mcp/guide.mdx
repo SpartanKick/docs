@@ -21,9 +21,15 @@ As an example, here's a video in which [we use Coplay's MCP to edit multiple Uni
 
 Once you have Coplay installed and authenticated, you're ready to connect the Coplay MCP.
 
-Installing Coplay MCP for Claude Code: `claude mcp add --scope user --transport stdio coplay-mcp --env MCP_TOOL_TIMEOUT=720000 -- uvx --python ">=3.11" coplay-mcp-server@latest`
+### Claude Code
 
-Or add this config to your favorite MCP Host (e.g. Cursor or Cline):
+Run this command:
+
+`claude mcp add --scope user --transport stdio coplay-mcp --env MCP_TOOL_TIMEOUT=720000 -- uvx --python ">=3.11" coplay-mcp-server@latest`
+
+### Cursor & Cline
+
+Add this config to your MCP host:
 ```json
 {
   "mcpServers": {
@@ -43,11 +49,21 @@ Or add this config to your favorite MCP Host (e.g. Cursor or Cline):
 }
 ```
 
+### VS Code
+
+1. Use CMD/Ctrl + Shift + P to open the Command Palette
+2. Choose **MCP: Add Server**
+3. Choose **stdio**
+4. Enter this command: `uvx --python >=3.11 coplay-mcp-server@latest`
+5. Enter `coplay-mcp` as the identifier
+
+### Testing
 To test that your Coplay MCP works, prompt your MCP client (e.g., Cursor or ChatGPT) with something like: `List all of the open unity editors using Coplay MCP`. If this yields the actual list of open editors, you're good to go.
 
-Note: We set the timeout to 720s (12 minutes) because using the coplay_task tool can run for quite a while in Unity depending on the task. If you don't plan to use the coplay_task tool, you can set the timeout to a more reasonable value such as 60s.
+### Note
+We set the timeout to 720s (12 minutes) because using the coplay_task tool can run for quite a while in Unity depending on the task. If you don't plan to use the coplay_task tool, you can set the timeout to a more reasonable value such as 60s.
 
-## Example config for Codex ClI
+## Example config for Codex CLI
 For Codex CLI you need to edit your `~/.codex/config.toml` file to include the Coplay MCP server:
 ```
 [mcp_servers.coplay_mcp]
