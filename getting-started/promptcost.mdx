@@ -1,3 +1,78 @@
 ---
-title: "Prompt Cost"
+title: "Prompt Cost Guide"
+description: "Understand Coplay's pricing models, context caching rules, and how to avoid the 'double cost' threshold."
 ---
+
+Coplay supports "Bring Your Own Key" (BYOK) for the latest AI models. However, advanced billing mechanics like **Context Caching** and **Token Thresholds** can drastically affect your bill. Use this guide to optimize your spending.
+
+## 💰 The "Hidden" Costs
+
+Beyond the standard price per token, there are three critical rules that affect your final bill:
+
+### 1. The 5-Minute Cache Rule
+Most providers (like Anthropic and Google) offer "Context Caching" to make long chats cheaper.
+* **The Trap:** Cache typically resets after **5 minutes of inactivity**.
+* **The Cost:** If you wait 6 minutes to reply, the cache clears, and you are charged the **full non-cached rate** (often **10x higher**) to re-process your entire history.
+* **Fix:** For long, complex sessions, try to keep your replies frequent to keep the cache alive.
+
+### 2. The 200k Token Threshold
+* **The Rule:** Once your active context (pinned files + chat history) exceeds **200,000 tokens**, many providers **double the cost per token** for the excess.
+* **Fix:** If you hit this limit, immediately **Start a New Thread** to reset your token count.
+
+### 3. The Multiplier Effect
+You pay for **Input Tokens** on every single message. If you pin a 10,000-token script and ask 5 questions about it, you pay for those 10,000 tokens **5 times**.
+
+---
+
+## 🏷️ Price List (Per Request Unit)
+
+*Prices reflect the estimated cost per ~1k tokens as displayed in the Coplay model selector.*
+
+### 🟢 OpenAI Models
+The industry standard for logic and coding capability.
+
+| Model | Price | Best Use Case |
+| :--- | :--- | :--- |
+| **GPT-5.2** | **$0.042** | **The Flagship.** The most powerful and expensive model available. Use for critical architecture planning. |
+| **GPT-5.1** | **$0.032** | **Balanced High-End.** Excellent general reasoning at a better rate than 5.2. |
+| **GPT-5.1 Codex** | **$0.032** | **Code Specialist.** Optimized specifically for programming tasks. Best for generation C# scripts. |
+| **GPT-5.1 Codex Max**| **$0.032** | **Large Context.** Same pricing as Codex but likely supports larger context windows for huge files. |
+| **GPT-4.1** | **$0.014** | **Budget Logic.** A solid, reliable option for standard tasks where "cutting edge" intelligence isn't required. |
+
+### 🟣 Anthropic (Claude)
+Known for high-quality prose and excellent code explanations.
+
+| Model | Price | Best Use Case |
+| :--- | :--- | :--- |
+| **Claude 4.5 Opus** | **$0.055** | **Deepest Reasoning.** Extremely expensive. Use only for the most complex, nuanced problems. |
+| **Claude 4.5 Sonnet**| **$0.038** | **The Gold Standard.** Balanced speed and smarts. The community favorite for Unity C#. |
+| **Claude 4.5 Haiku** | **$0.026** | **Fast & Efficient.** Great for quick chats or simple refactors. |
+
+### 🔵 Google (Gemini)
+Unique speed and massive context handling.
+
+| Model | Price | Best Use Case |
+| :--- | :--- | :--- |
+| **Gemini 3 Pro** | **FREE\*** | **Best Value.** Currently **Free for Subscribed Users** until the end of 2025. Use this for everything! |
+| **Gemini 2.5 Pro** | **$0.031** | **Legacy High-End.** Good performance, but generally outperformed by v3. |
+| **Gemini 2.5 Flash** | **$0.005** | **Ultra Cheap.** The absolute cheapest paid option. Perfect for massive, repetitive tasks. |
+
+*\*Free access to Gemini 3 Pro is a limited-time offer for subscribers ending Dec 31, 2025.*
+
+---
+
+## 📉 Optimization Strategy
+
+<Steps>
+  <Step title="Abuse the Free Tier">
+    Since **Gemini 3 Pro** is free for subscribers right now, use it for 100% of your heavy lifting (refactoring, documentation, experimentation) to save your paid credits for critical polish.
+  </Step>
+
+  <Step title="Watch the Clock">
+    If you are in a "deep dive" session with a huge context, **don't take a 10-minute coffee break**. The cache will expire, and your next prompt will cost 10x more. Finish the session or close the thread first.
+  </Step>
+
+  <Step title="Prune Context Aggressively">
+    Once you finish working on a file, **Unpin it (`@`)**. Carrying dead weight in your context is the fastest way to hit the 200k "Double Cost" threshold.
+  </Step>
+</Steps>
