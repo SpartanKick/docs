@@ -64,15 +64,15 @@ Unique speed and massive context handling.
 ## 📉 Optimization Strategy
 
 <Steps>
-  <Step title="Abuse the Free Tier">
-    Since **Gemini 3 Pro** is free for subscribers right now, use it for 100% of your heavy lifting (refactoring, documentation, experimentation) to save your paid credits for critical polish.
+  <Step title="Prune Your Context">
+    **Unpin files** (`@`) that are no longer relevant to the current question. If you finished working on `PlayerController.cs`, unpin it before moving to `GameManager.cs`.
   </Step>
 
-  <Step title="Watch the Clock">
-    If you are in a "deep dive" session with a huge context, **don't take a 10-minute coffee break**. The cache will expire, and your next prompt will cost 10x more. Finish the session or close the thread first.
+  <Step title="Start Fresh Threads">
+    Long threads accumulate "history tokens." If a task is done, **Start a New Thread**. This clears the history and stops you from paying for old, irrelevant conversation data.
   </Step>
 
-  <Step title="Prune Context Aggressively">
-    Once you finish working on a file, **Unpin it (`@`)**. Carrying dead weight in your context is the fastest way to hit the 200k "Double Cost" threshold.
+  <Step title="Use the Right Tool">
+    Don't use **GPT-5** or **o1** to write a simple `Debug.Log`. Switch to **Gemini 3 Flash** or **GPT-4o-Mini** for simple tasks to save 95% on costs.
   </Step>
 </Steps>
