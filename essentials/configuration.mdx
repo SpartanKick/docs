@@ -26,11 +26,9 @@ The Context dropdown determines what information Coplay has access to when respo
 Coplay offers several modes that control how tasks are processed. Modes change often, so check the Discord release notes for up‑to‑date best practices. The available modes are:
 
 - **Normal** (default) – Balanced performance that automatically executes a sequence of actions. Suitable for most tasks.
-- **StepByStep** – Pauses after every action and waits for your feedback before continuing. Use this for tasks that require precise placement or manual oversight; slower but more accurate.
-- **OneShotSceneGen** – Generates an entire scene in a single prompt. Primarily used for large scene generation or when providing your own 3D models. This mode is being deprecated since Normal mode now handles most scene generation tasks.
-- **Experimental** – Includes cutting‑edge features such as batch tool calls that speed up execution. This mode is intended for testing and may be less stable.
 - **PipelineRecording** – Records every action in a session so you can replay the sequence or generate variations later. After recording, ask Coplay to "create a variation" to automatically apply changes based on the recorded pipeline.
 - **Orchestrator** – Reads tasks from a `CoplayPlan.md` file and executes them in order. This autopilot mode aims to transform a design document into a working game. It is powerful but still experimental and may take longer to complete tasks.
+
 
 When in doubt, start with **Normal** mode and adjust based on your use case.
 
@@ -64,8 +62,8 @@ Coplay lets you choose between the latest AI models from major foundational prov
 
 ### Google
 
-- **gemini-2-5-pro**: Strong multimodal capabilities that excels at analyzing visual elements, scene composition, and asset organization. Good with well-structured, multi-step requests and can handle actions in bulk. Offers a balanced approach between Claude's thoroughness and GPT-4.1's speed.
-- **gemini-2-5-flash**: Optimized for speed and efficiency with good baseline understanding of Unity concepts, ideal for quick reference questions, syntax checking, and basic troubleshooting when immediate guidance is needed.
+- **gemini-3-pro**: Strong multimodal capabilities that excels at analyzing visual elements, scene composition, and asset organization. Good with well-structured, multi-step requests and can handle actions in bulk. Offers a balanced approach between Claude Opus thoroughness and GPT-5.2's speed.
+- **gemini-3-flash**: Optimized for speed and efficiency with good baseline understanding of Unity concepts, ideal for quick reference questions, syntax checking, and basic troubleshooting when immediate guidance is needed.
 
 ## Action Recording
 

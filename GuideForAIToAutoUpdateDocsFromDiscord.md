@@ -69,11 +69,9 @@ This guide captures the process followed when updating Coplay documentation and 
 #### `Docs/essentials/configuration.mdx`
 - Replace the "Mode" placeholder with detailed list of modes:
   - Normal
-  - StepByStep
-  - OneShotSceneGen
-  - Experimental
   - PipelineRecording
   - Orchestrator
+
 
 #### `Docs/essentials/settings.mdx`
 - Add section on external documentation and web search
