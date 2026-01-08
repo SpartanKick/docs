@@ -29,7 +29,7 @@
               "essentials/configuration",
               "essentials/settings",
               "essentials/troubleshooting",
-              "essentials/Common-Issues"
+              "essentials/common-issues"
             ]
           },
           {
@@ -42,7 +42,7 @@
             "group": "Coplay MCP",
             "pages": [
               "coplay-mcp/guide",
-              "claude-code-guide"       
+              "coplay-mcp/claude-code-guide"       
             ]
           },
           {
