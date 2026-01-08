@@ -40,7 +40,10 @@
           },
           {
             "group": "Coplay MCP",
-            "pages": ["coplay-mcp/guide"]
+            "pages": [
+              "coplay-mcp/guide",
+              "claude-code-guide"       
+            ]
           },
           {
             "group": "Tutorials",

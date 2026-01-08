@@ -1,0 +1,208 @@
+---
+title: "Setting Up Coplay MCP in Claude Code"
+description: "Learn how to install and configure the Coplay MCP server to enable Claude Code integration with Unity Editor for seamless AI-assisted development."
+---
+
+**Coplay MCP** (Model Context Protocol) bridges Claude Code and Unity Editor, allowing you to control Unity directly from your AI assistant. This integration enables you to create GameObjects, modify components, generate scenes, and debug your Unity projects through natural language commands.
+
+<Steps>
+  <Step title="Prerequisites">
+    Before starting this tutorial, ensure you have:
+
+    - Unity installed (2021.3 or later recommended)
+    - Node.js and npm installed on your system
+    - Python 3.11 or higher installed
+    - A Unity project ready for development
+    - Basic familiarity with command line/terminal
+  </Step>
+  <Step title="Install Unity Coplay Package">
+    First, you need to install the Coplay extension inside Unity Editor.
+
+    1. Open your Unity project
+    2. Install the Coplay package from the Unity Package Manager or Asset Store
+    3. Ensure the Coplay extension is enabled and running
+
+    <CardGroup cols={2}>
+      
+    </CardGroup>
+  </Step>
+  <Step title="Install Claude Code CLI">
+    The Claude Code CLI is required to manage MCP server connections.
+
+    Open your terminal (PowerShell on Windows, Terminal on macOS/Linux) and run:
+
+    ```bash
+    npm install -g @anthropic-ai/claude-code
+    ```
+
+    <Tip>
+      After installation, you may need to restart your terminal for the `claude` command to be recognized.
+    </Tip>
+    Verify the installation by running:
+
+    ```bash
+    claude --version
+    ```
+  </Step>
+  <Step title="Add Coplay MCP Server">
+    Now connect the Coplay MCP server to Claude Code. This enables communication between Claude and your Unity Editor.
+
+    Run the following command in your terminal:
+
+    ```bash
+    claude mcp add --scope user --transport stdio coplay-mcp --env MCP_TOOL_TIMEOUT=720000 -- uvx --python ">=3.11" coplay-mcp-server@latest
+    ```
+
+    **Command Breakdown:**
+
+    - `--scope user`: Installs the server for your user account
+    - `--transport stdio`: Uses standard input/output for communication
+    - `--env MCP_TOOL_TIMEOUT=720000`: Sets a 12-minute timeout for long operations
+    - `uvx --python ">=3.11"`: Uses Python 3.11 or higher to run the server
+  </Step>
+  <Step title="Verify the Connection">
+    Check that the Coplay MCP server is properly connected:
+
+    ```bash
+    claude mcp list
+    ```
+
+    You should see output similar to:
+
+    ```
+    coplay-mcp: ✓ Connected
+    ```
+
+    <Warning>
+      If you see an error or the server isn't listed, try restarting your terminal and running the verification command again.
+    </Warning>
+  </Step>
+  <Step title="Open Unity and Start Using Claude Code">
+    With everything installed, you can now control Unity through Claude Code:
+
+    1. **Open your Unity project** in Unity Editor
+    2. **Start a conversation with Claude Code** in your terminal or IDE
+    3. **Ask Claude to list open Unity projects:**
+
+       ```text
+       "List all open Unity editors"
+       ```
+
+    Claude will now have access to your Unity project and can:
+
+    - List and navigate the scene hierarchy
+    - Create and modify GameObjects
+    - Add and configure components
+    - Generate materials and textures
+    - Set up Input Actions
+    - Create UI elements
+    - Debug and fix scripts
+    - And much more!
+  </Step>
+  <Step title="Example: Your First Unity Command">
+    Try a simple command to test the integration:
+
+    **Prompt:**
+
+    ```text
+    "Create a red cube at position (0, 1, 0) in the current Unity scene"
+    ```
+
+    Claude will:
+
+    1. Set the Unity project root
+    2. Create a GameObject with a Cube primitive
+    3. Position it at the specified coordinates
+    4. Create and assign a red material
+
+    Check your Unity Scene view to see the result!
+  </Step>
+  <Step title="Set Unity Project Root (Optional)">
+    If you're working with multiple Unity projects, you can explicitly set which project Claude should work with:
+
+    **Prompt:**
+
+    ```text
+    "Set the Unity project root to D:\Unity\MyProject"
+    ```
+
+    This ensures all Unity commands target the correct project.
+  </Step>
+</Steps>
+
+---
+
+## 🎥 Video Tutorials
+
+_Watch these guides to see the setup process in action:_
+
+<CardGroup cols={2}>
+  <Card title="Installing Coplay in Unity" icon="play" href="https://youtu.be/n0OlhtcotEU">
+    Step-by-step installation of the Coplay Unity package
+  </Card>
+  <Card title="Coplay Quick Start" icon="play" href="https://youtube.com/shorts/ZMzvbg91fZc?feature=share">
+    Quick overview of getting started with Coplay
+  </Card>
+</CardGroup>
+
+---
+
+## 🔧 Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'claude' command not found">
+    **Solution:** Ensure Node.js and npm are properly installed, then run:
+
+    ```bash
+    npm install -g @anthropic-ai/claude-code
+    ```
+
+    Restart your terminal after installation.
+  </Accordion>
+  <Accordion title="MCP server not connecting">
+    **Solution:**
+
+    1. Verify Python 3.11+ is installed: `python --version`
+    2. Remove and re-add the server:
+
+       ```bash
+       claude mcp remove coplay-mcp
+       claude mcp add --scope user --transport stdio coplay-mcp --env MCP_TOOL_TIMEOUT=720000 -- uvx --python ">=3.11" coplay-mcp-server@latest
+       ```
+    3. Restart Claude Code
+  </Accordion>
+  <Accordion title="Unity project not detected">
+    **Solution:**
+
+    - Ensure Unity Editor is open with your project loaded
+    - Try explicitly setting the project root in Claude Code
+    - Verify the Coplay Unity package is installed and enabled
+  </Accordion>
+  <Accordion title="Timeout errors on large operations">
+    **Solution:** The default timeout is already set to 12 minutes. For even longer operations, increase the `MCP_TOOL_TIMEOUT` value:
+
+    ```bash
+    claude mcp remove coplay-mcp
+    claude mcp add --scope user --transport stdio coplay-mcp --env MCP_TOOL_TIMEOUT=1800000 -- uvx --python ">=3.11" coplay-mcp-server@latest
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Info>
+  **Pro Tip:** Use the `@` symbol to reference specific Unity assets, scripts, or GameObjects in your prompts. For example: "Modify the **`@PlayerController.cs`** script to add jump functionality."
+</Info>
+
+## Next Steps
+
+Now that Coplay MCP is set up, explore what you can do:
+
+- **Create GameObjects and Prefabs** with natural language
+- **Generate 3D scenes** from text descriptions
+- **Fix and debug scripts** by describing the issue
+- **Set up Input Actions** for player controls
+- **Build UI systems** with automatic layout and styling
+- **Generate textures and materials** with AI
+
+Start by asking Claude: _"What can you do with Unity through Coplay MCP?"_
