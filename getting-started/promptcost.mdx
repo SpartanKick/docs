@@ -1,73 +1,72 @@
 ---
-title: "Prompt Cost Guide"
-description: "Analysis of average Coplay prompt costs based on real user data across GPT-5, Claude 4.5, and Gemini 3."
+title: "Prompt Cost Guide (2026 Edition)"
+description: "Average prompt costs for Coplay users across GPT-5, Claude 4.5, and Gemini 3."
 ---
 
 import { Callout, Steps, Step } from 'nextra-theme-docs'
 
-Coplay supports **Bring Your Own Key (BYOK)**. The data below represents our latest internal metrics for the average cost of a single interaction (prompt + response).
+Coplay supports **Bring Your Own Key (BYOK)**. The data below represents the average cost of a single interaction (prompt + response) based on real-world usage metrics.
 
 <Callout type="info">
-  **Pricing Definition:** These figures are not "per 1k tokens." They represent the **average cost per prompt** in Coplay, measured across millions of user requests to provide the most accurate "real-world" budget estimate.
+  **Pricing Definition:** These figures represent the **average cost per prompt** in Coplay, measured across our user base. This is a more accurate "real-world" estimate than simple per-token rates.
 </Callout>
 
 ---
 
-## 🏷️ Live Price List (Coplay User Averages)
+## 🏷️ Live Price List (Avg. Cost Per Prompt)
 
 ### 🟢 OpenAI Models
-OpenAI's GPT-5 series remains the leader for professional task reliability and tool-calling precision.
+The industry standard for professional task reliability and tool-calling precision.
 
-| Model | Avg. Cost / Prompt | Total User Requests | Best Use Case |
-| :--- | :--- | :--- | :--- |
-| **GPT-5.2** | **$0.032** | 583 | **The Expert.** High-stakes professional logic. |
-| **GPT-5.1** | **$0.031** | 22,289 | **The Workhorse.** High-throughput reasoning. |
-| **GPT-5.1 Codex** | **$0.030** | 2,595 | **Logic King.** Best for complex C# architecture. |
-| **GPT-5.1 Codex Max** | **$0.023** | 823 | **Deep Context.** Large file processing/scanning. |
-| **GPT-4.1** | **$0.035** | 1,438 | **Legacy Logic.** Stable but higher avg. cost/prompt. |
+| Model | Avg. Cost / Prompt | Best Use Case |
+| :--- | :--- | :--- |
+| **GPT-5.2** | **$0.032** | **The Expert.** High-stakes professional logic. |
+| **GPT-5.1** | **$0.031** | **The Workhorse.** High-throughput reasoning. |
+| **GPT-5.1 Codex** | **$0.030** | **Logic King.** Best for complex C# architecture. |
+| **GPT-5.1 Codex Max** | **$0.023** | **Deep Context.** Large file processing/scanning. |
+| **GPT-4.1** | **$0.035** | **Legacy Logic.** Stable but higher avg. cost/prompt. |
 
 ### 🟣 Anthropic (Claude)
-The Claude 4.5 family dominates the coding leaderboard, particularly for "agentic" workflows.
+The leader in coding capabilities, particularly for "agentic" and multi-file workflows.
 
-| Model | Avg. Cost / Prompt | Total User Requests | Best Use Case |
-| :--- | :--- | :--- | :--- |
-| **Claude 4.5 Opus** | **$0.110** | 30,980 | **The Architect.** Unrivaled multi-file refactors. |
-| **Claude 4.5 Sonnet**| **$0.100** | 28,030 | **The Gold Standard.** Favorite for Unity devs. |
-| **Claude 4.5 Haiku** | **$0.025** | 10,282 | **Speed Specialist.** Fast edits and sub-tasks. |
-| **Claude 3.7 Sonnet**| **$0.026** | 181 | **Value Reasoning.** Efficient middle-ground. |
-| **Claude 4.1 Opus** | **$0.088** | 11 | **Legacy.** Maintained for specific edge cases. |
+| Model | Avg. Cost / Prompt | Best Use Case |
+| :--- | :--- | :--- |
+| **Claude 4.5 Opus** | **$0.110** | **The Architect.** Unrivaled multi-file refactors. |
+| **Claude 4.5 Sonnet**| **$0.100** | **The Gold Standard.** Favorite for Unity devs. |
+| **Claude 4.5 Haiku** | **$0.025** | **Speed Specialist.** Fast edits and sub-tasks. |
+| **Claude 3.7 Sonnet**| **$0.026** | **Hybrid Reasoning.** Produced in standard or thinking mode. |
+| **Claude 3.5 Sonnet**| **$0.082** | **Legacy.** Maintained for project consistency. |
 
-### 🔵 Google & Others (Specialized)
-Gemini 3 Pro remains a massive outlier for high-volume context users.
+### 🔵 Google & Specialized Models
+Gemini 3 Pro is optimized for massive 1M+ token windows.
 
-| Model | Avg. Cost / Prompt | Total User Requests | Best Use Case |
-| :--- | :--- | :--- | :--- |
-| **Gemini 3 Pro** | **$0.140** | 171,602 | **Context Beast.** Massive codebase ingestion. |
-| **Gemini 2.5 Pro** | **$0.062** | 10,651 | **Large Memory.** Reliable wide-context tasks. |
-| **Nova Premier VL** | **$0.083** | 2 | **Multimodal.** Advanced video/image logic. |
-| **Jamba Large 1.7** | **$0.065** | 2 | **Speed.** Ultra-low latency for long output. |
+| Model | Avg. Cost / Prompt | Best Use Case |
+| :--- | :--- | :--- |
+| **Gemini 3 Pro** | **$0.140** | **Context Beast.** Massive codebase ingestion. |
+| **Gemini 2.5 Pro** | **$0.062** | **Large Memory.** Reliable wide-context tasks. |
+| **Nova Premier VL** | **$0.083** | **Multimodal.** Advanced video/image logic. |
+| **Jamba Large 1.7** | **$0.065** | **High Throughput.** Optimized for low-latency. |
 
 ---
 
 ## 💰 Critical Billing Rules
 
 <Callout type="warning">
-  **The 5-Minute Cache Window:** Anthropic and Google prices drop by ~90% when context is cached. However, if you wait more than **5 minutes** between replies, the cache expires, and you are billed the full price for your entire history again.
+  **The 5-Minute Cache Window:** Anthropic and Google prices drop significantly when context is cached. However, if you wait more than **5 minutes** between replies, the cache expires, and you are billed the full price for your history again.
 </Callout>
 
 ### 📉 Efficiency Strategies
 
 <Steps>
   <Step title="Prune Your Pins">
-    **Unpin files** (`@`) as soon as you are done with them. Every pinned file adds to the input cost of *every* subsequent message.
+    **Unpin files** (`@`) as soon as you are done with them. Every pinned file adds to the input cost of *every* message in that thread.
   </Step>
 
   <Step title="The 200k Token Reset">
-    Once a thread exceeds **200,000 tokens**, providers often double the per-token rate. When you hit this "Double Cost" threshold, **Start a New Thread**.
+    Once a thread exceeds **200,000 tokens**, providers often implement a surcharge. When you hit this threshold, **Start a New Thread**.
   </Step>
 
   <Step title="Smart Routing">
-    Use **Gemini 3 Pro** for deep codebase research, but switch to **Claude 4.5 Haiku** or **GPT-5.1** for writing individual methods to keep your average cost per prompt low.
+    Use **Gemini 3 Pro** for deep codebase research, but switch to **Claude 4.5 Haiku** or **GPT-5.1** for writing individual methods to keep your costs low.
   </Step>
 </Steps>
-
