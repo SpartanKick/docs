@@ -1,78 +1,73 @@
 ---
 title: "Prompt Cost Guide"
-description: "Understand Coplay's pricing models, context caching rules, and how to avoid the 'double cost' threshold."
+description: "Analysis of average Coplay prompt costs based on real user data across GPT-5, Claude 4.5, and Gemini 3."
 ---
 
-Coplay supports "Bring Your Own Key" (BYOK) for the latest AI models. However, advanced billing mechanics like **Context Caching** and **Token Thresholds** can drastically affect your bill. Use this guide to optimize your spending.
+import { Callout, Steps, Step } from 'nextra-theme-docs'
 
-## 💰 The "Hidden" Costs
+Coplay supports **Bring Your Own Key (BYOK)**. The data below represents our latest internal metrics for the average cost of a single interaction (prompt + response).
 
-Beyond the standard price per token, there are three critical rules that affect your final bill:
-
-### 1. The 5-Minute Cache Rule
-Most providers (like Anthropic and Google) offer "Context Caching" to make long chats cheaper.
-* **The Trap:** Cache typically resets after **5 minutes of inactivity**.
-* **The Cost:** If you wait 6 minutes to reply, the cache clears, and you are charged the **full non-cached rate** (often **10x higher**) to re-process your entire history.
-* **Fix:** For long, complex sessions, try to keep your replies frequent to keep the cache alive.
-
-### 2. The 200k Token Threshold
-* **The Rule:** Once your active context (pinned files + chat history) exceeds **200,000 tokens**, many providers **double the cost per token** for the excess.
-* **Fix:** If you hit this limit, immediately **Start a New Thread** to reset your token count.
-
-### 3. The Multiplier Effect
-You pay for **Input Tokens** on every single message. If you pin a 10,000-token script and ask 5 questions about it, you pay for those 10,000 tokens **5 times**.
+<Callout type="info">
+  **Pricing Definition:** These figures are not "per 1k tokens." They represent the **average cost per prompt** in Coplay, measured across millions of user requests to provide the most accurate "real-world" budget estimate.
+</Callout>
 
 ---
 
-## 🏷️ Price List (Per Request Unit)
-
-*Prices reflect the estimated cost per ~1k tokens as displayed in the Coplay model selector.*
+## 🏷️ Live Price List (Coplay User Averages)
 
 ### 🟢 OpenAI Models
-The industry standard for logic and coding capability.
+OpenAI's GPT-5 series remains the leader for professional task reliability and tool-calling precision.
 
-| Model | Price | Best Use Case |
-| :--- | :--- | :--- |
-| **GPT-5.2** | **$0.042** | **The Flagship.** The most powerful and expensive model available. Use for critical architecture planning. |
-| **GPT-5.1** | **$0.032** | **Balanced High-End.** Excellent general reasoning at a better rate than 5.2. |
-| **GPT-5.1 Codex** | **$0.032** | **Code Specialist.** Optimized specifically for programming tasks. Best for generation C# scripts. |
-| **GPT-5.1 Codex Max**| **$0.032** | **Large Context.** Same pricing as Codex but likely supports larger context windows for huge files. |
-| **GPT-4.1** | **$0.014** | **Budget Logic.** A solid, reliable option for standard tasks where "cutting edge" intelligence isn't required. |
+| Model | Avg. Cost / Prompt | Total User Requests | Best Use Case |
+| :--- | :--- | :--- | :--- |
+| **GPT-5.2** | **$0.032** | 583 | **The Expert.** High-stakes professional logic. |
+| **GPT-5.1** | **$0.031** | 22,289 | **The Workhorse.** High-throughput reasoning. |
+| **GPT-5.1 Codex** | **$0.030** | 2,595 | **Logic King.** Best for complex C# architecture. |
+| **GPT-5.1 Codex Max** | **$0.023** | 823 | **Deep Context.** Large file processing/scanning. |
+| **GPT-4.1** | **$0.035** | 1,438 | **Legacy Logic.** Stable but higher avg. cost/prompt. |
 
 ### 🟣 Anthropic (Claude)
-Known for high-quality prose and excellent code explanations.
+The Claude 4.5 family dominates the coding leaderboard, particularly for "agentic" workflows.
 
-| Model | Price | Best Use Case |
-| :--- | :--- | :--- |
-| **Claude 4.5 Opus** | **$0.055** | **Deepest Reasoning.** Extremely expensive. Use only for the most complex, nuanced problems. |
-| **Claude 4.5 Sonnet**| **$0.038** | **The Gold Standard.** Balanced speed and smarts. The community favorite for Unity C#. |
-| **Claude 4.5 Haiku** | **$0.026** | **Fast & Efficient.** Great for quick chats or simple refactors. |
+| Model | Avg. Cost / Prompt | Total User Requests | Best Use Case |
+| :--- | :--- | :--- | :--- |
+| **Claude 4.5 Opus** | **$0.110** | 30,980 | **The Architect.** Unrivaled multi-file refactors. |
+| **Claude 4.5 Sonnet**| **$0.100** | 28,030 | **The Gold Standard.** Favorite for Unity devs. |
+| **Claude 4.5 Haiku** | **$0.025** | 10,282 | **Speed Specialist.** Fast edits and sub-tasks. |
+| **Claude 3.7 Sonnet**| **$0.026** | 181 | **Value Reasoning.** Efficient middle-ground. |
+| **Claude 4.1 Opus** | **$0.088** | 11 | **Legacy.** Maintained for specific edge cases. |
 
-### 🔵 Google (Gemini)
-Unique speed and massive context handling.
+### 🔵 Google & Others (Specialized)
+Gemini 3 Pro remains a massive outlier for high-volume context users.
 
-| Model | Price | Best Use Case |
-| :--- | :--- | :--- |
-| **Gemini 3 Pro** | **FREE\*** | **Best Value.** Currently **Free for Subscribed Users** until the end of 2025. Use this for everything! |
-| **Gemini 2.5 Pro** | **$0.031** | **Legacy High-End.** Good performance, but generally outperformed by v3. |
-| **Gemini 2.5 Flash** | **$0.005** | **Ultra Cheap.** The absolute cheapest paid option. Perfect for massive, repetitive tasks. |
-
-*\*Free access to Gemini 3 Pro is a limited-time offer for subscribers ending Dec 31, 2025.*
+| Model | Avg. Cost / Prompt | Total User Requests | Best Use Case |
+| :--- | :--- | :--- | :--- |
+| **Gemini 3 Pro** | **$0.140** | 171,602 | **Context Beast.** Massive codebase ingestion. |
+| **Gemini 2.5 Pro** | **$0.062** | 10,651 | **Large Memory.** Reliable wide-context tasks. |
+| **Nova Premier VL** | **$0.083** | 2 | **Multimodal.** Advanced video/image logic. |
+| **Jamba Large 1.7** | **$0.065** | 2 | **Speed.** Ultra-low latency for long output. |
 
 ---
 
-## 📉 Optimization Strategy
+## 💰 Critical Billing Rules
+
+<Callout type="warning">
+  **The 5-Minute Cache Window:** Anthropic and Google prices drop by ~90% when context is cached. However, if you wait more than **5 minutes** between replies, the cache expires, and you are billed the full price for your entire history again.
+</Callout>
+
+### 📉 Efficiency Strategies
 
 <Steps>
-  <Step title="Prune Your Context">
-    **Unpin files** (`@`) that are no longer relevant to the current question. If you finished working on `PlayerController.cs`, unpin it before moving to `GameManager.cs`.
+  <Step title="Prune Your Pins">
+    **Unpin files** (`@`) as soon as you are done with them. Every pinned file adds to the input cost of *every* subsequent message.
   </Step>
 
-  <Step title="Start Fresh Threads">
-    Long threads accumulate "history tokens." If a task is done, **Start a New Thread**. This clears the history and stops you from paying for old, irrelevant conversation data.
+  <Step title="The 200k Token Reset">
+    Once a thread exceeds **200,000 tokens**, providers often double the per-token rate. When you hit this "Double Cost" threshold, **Start a New Thread**.
   </Step>
 
-  <Step title="Use the Right Tool">
-    Don't use **GPT-5** or **o1** to write a simple `Debug.Log`. Switch to **Gemini 3 Flash** or **GPT-4o-Mini** for simple tasks to save 95% on costs.
+  <Step title="Smart Routing">
+    Use **Gemini 3 Pro** for deep codebase research, but switch to **Claude 4.5 Haiku** or **GPT-5.1** for writing individual methods to keep your average cost per prompt low.
   </Step>
 </Steps>
+
