@@ -62,6 +62,31 @@ Add this config to your MCP host:
 4. Enter this command: `uvx --python >=3.11 coplay-mcp-server@latest`
 5. Enter `coplay-mcp` as the identifier
 
+
+### Antigravity
+
+1. Open the MCP Servers menu in the top right.
+
+2. Select Manage MCP Servers.
+
+3. Click View Role Config to open your mcp_config.json file.
+
+4. Add the following configuration to your MCP list:
+
+```json
+
+"coplay-mcp": {
+  "disabled": false,
+  "command": "uvx",
+  "args": [
+    "--python",
+    ">=3.11",
+    "coplay-mcp-server@latest"
+  ]
+}
+```
+5.  Save the file and click Refresh in the MCP Manager to see Coplay appear in the list.
+
 ### Testing
 
 To test that your Coplay MCP works, prompt your MCP client (e.g., Cursor or ChatGPT) with something like: `List all of the open unity editors using Coplay MCP`. If this yields the actual list of open editors, you're good to go.
