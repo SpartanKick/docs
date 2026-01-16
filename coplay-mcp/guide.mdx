@@ -20,6 +20,30 @@ As an example, here's a video in which [we use Coplay's MCP to edit multiple Uni
 ## Setting up Coplay MCP
 
 Once you have Coplay installed and authenticated, you're ready to connect the Coplay MCP.
+### Claude Desktop
+
+1. Open Settings: Open the Claude Desktop app.
+2. Edit Config: Go to Settings > Developer > Edit Config.
+3. Paste Configuration: Add the following entry to your mcpServers list:
+
+```json
+{
+  "mcpServers": {
+    "coplay-mcp": {
+      "command": "uvx",
+      "args": [
+        "--python",
+        ">=3.11",
+        "coplay-mcp-server@latest"
+      ],
+      "env": {
+        "MCP_TOOL_TIMEOUT": "720000"
+      }
+    }
+  }
+}
+```
+4. Restart: Fully quit and restart Claude Desktop.
 
 ### Claude Code
 
